@@ -1,5 +1,5 @@
 import Airtable from 'airtable'
-import { create, destroy, read, update } from './crud'
+import { create, destroy, read, readOne, update } from './crud'
 
 type AirtableConfig = {
   apiKey: string
@@ -27,8 +27,26 @@ class AirtableCRUD {
     return await destroy(this.airtable, table, ids)
   }
 
-  read = async ({ table, filter }: { table: string; filter: string }) => {
-    return await read(this.airtable, table, filter)
+  read = async ({
+    table,
+    filter,
+    maxRecords,
+    sort,
+    fields,
+    view,
+  }: {
+    table: string
+    filter?: string
+    maxRecords?: number
+    sort?: any[]
+    fields?: string[]
+    view?: string
+  }) => {
+    return await read(this.airtable, table, filter, maxRecords, sort, fields, view)
+  }
+
+  readOne = async ({ table, id }: { table: string; id: string }) => {
+    return await readOne(this.airtable, table, id)
   }
 
   update = async ({ table, records }: { table: string; records: any[] }) => {

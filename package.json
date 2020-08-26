@@ -1,18 +1,19 @@
 {
   "name": "airtable-crud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Airtable wrapper with non-limited CRUD Operations",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "dev": "nodemon --ext ts --verbose --exec yarn build --ignore lib/",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
+    "postversion": "git push && git push --tags",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "version": "npm run format && git add -A src"
   },
   "repository": "git@github.com:o0charlie0o/airtable-crud.git",
   "author": "Charlie Ray <charlie@dsrecordings.com>",
@@ -24,6 +25,8 @@
     "lib/**/*"
   ],
   "devDependencies": {
+    "@types/lodash": "^4.14.160",
+    "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
@@ -31,6 +34,7 @@
   },
   "dependencies": {
     "@types/airtable": "^0.8.0",
-    "airtable": "^0.9.0"
+    "airtable": "^0.9.0",
+    "lodash": "^4.17.20"
   }
 }
